@@ -9,11 +9,11 @@ services:
       - NET_ADMIN
     network_mode: host
   proxy-web-auto:
-    build:
-      context: ./nginx-cloudflare
-      args:
-        NGINX_IMAGE_VERSION: ${NGINX_IMAGE_VERSION:-stable-alpine}
-    # image: nginx:${NGINX_IMAGE_VERSION:-stable-alpine}
+#     build:
+#       context: ./nginx-cloudflare
+#       args:
+#         NGINX_IMAGE_VERSION: ${NGINX_IMAGE_VERSION:-stable-alpine}
+    image: nginx:${NGINX_IMAGE_VERSION:-stable-alpine}
     container_name: ${NGINX_WEB_SEVICE_NAME:-proxy-web-auto}
     restart: always
     ports:
