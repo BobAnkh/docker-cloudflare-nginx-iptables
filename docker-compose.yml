@@ -58,5 +58,7 @@ services:
 
 networks:
   default:
-    external:
-      name: ${NETWORK:-proxy}
+    external: true
+    name: ${NETWORK:-proxy}
+#     external:
+#       name: ${NETWORK:-proxy}
