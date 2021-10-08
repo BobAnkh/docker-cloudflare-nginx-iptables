@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ###
  # @Author       : BobAnkh
  # @Github       : https://github.com/BobAnkh
