@@ -70,7 +70,7 @@ services:
     restart: unless-stopped
     volumes:
       - ${NGINX_FILES_PATH:-./data}/conf.d:/etc/nginx/conf.d
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       NGINX_WEB_SEVICE_NAME: ${NGINX_WEB_SEVICE_NAME:-proxy-web-auto}
 
