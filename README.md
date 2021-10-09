@@ -25,6 +25,8 @@ You can just use the `setup.sh` script to help you do job 2-3 and place the Clou
 
 Place your Cloudflare Origin certificates in certificates folder e.g., `./data/certs/`
 
+Support for the newset version of `docker-compose`. If you are using an older version, be careful that you may have to change the format of `network` in `docker-compose.yml`.
+
 ## Credits
 
 This work is inspired by and based on 5 awesome work:
