@@ -3,16 +3,14 @@ version: '3'
 services:
   iptables-cloudflare:
     build: ./iptables-cloudflare
+    image: iptales-cloudflare:latest
     container_name: ${IPTABLES_SEVICE_NAME:-iptables-cloudflare}
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
     network_mode: host
+  
   proxy-web-auto:
-#     build:
-#       context: ./nginx-cloudflare
-#       args:
-#         NGINX_IMAGE_VERSION: ${NGINX_IMAGE_VERSION:-stable-alpine}
     image: nginx:${NGINX_IMAGE_VERSION:-stable-alpine}
     container_name: ${NGINX_WEB_SEVICE_NAME:-proxy-web-auto}
     restart: always
@@ -55,6 +53,19 @@ services:
       options:
         max-size: ${NGINX_GEN_LOG_MAX_SIZE:-2m}
         max-file: ${NGINX_GEN_LOG_MAX_FILE:-10}
+  
+  realip-cloudflare:
+    build:
+      context: ./realip-cloudflare
+      args:
+        REALIP_IMAGE_VERSION: ${REALIP_IMAGE_VERSION:-latest}
+    image: realip-cloudflare:latest
+    restart: unless-stopped
+    volumes:
+      - ${NGINX_FILES_PATH:-./data}/conf.d:/etc/nginx/conf.d
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      NGINX_WEB_SEVICE_NAME: ${NGINX_WEB_SEVICE_NAME:-proxy-web-auto}
 
 networks:
   default:

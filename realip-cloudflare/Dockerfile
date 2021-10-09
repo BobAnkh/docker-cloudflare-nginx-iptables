@@ -1,5 +1,6 @@
-ARG NGINX_IMAGE_VERSION
-FROM nginx:$NGINX_IMAGE_VERSION
+ARG REALIP_IMAGE_VERSION
+FROM alpinelinux/docker-cli:$REALIP_IMAGE_VERSION
+ENV DOCKER_HOST unix:///tmp/docker.sock
 
 WORKDIR /
 COPY docker-entrypoint.sh        /

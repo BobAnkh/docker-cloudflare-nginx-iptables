@@ -9,6 +9,8 @@
  # Copyright 2021 BobAnkh
 ### 
 
+set -e
+
 file1=/tmp/ips.log
 file2=/tmp/ips-new.log
 nginx_config_file=/etc/nginx/conf.d/real_ip_cloudflare.conf
@@ -23,8 +25,7 @@ then
         echo "[NGINX] Update..." > /tmp/cron.log
         /usr/local/bin/ip-docker.sh > $nginx_config_file
         /usr/local/bin/ip-docker.sh > $file1
-        nginx -t
-        nginx -s reload
+        docker kill -s HUP "$NGINX_WEB_SEVICE_NAME"
     else
         echo "[NGINX] Up to date!" > /tmp/cron.log
     fi
@@ -32,8 +33,7 @@ else
     echo "[NGINX] Init..." > /tmp/cron.log
     /usr/local/bin/ip-docker.sh > $nginx_config_file
     /usr/local/bin/ip-docker.sh > $file1
-    nginx -t
-    nginx -s reload
+    docker kill -s HUP "$NGINX_WEB_SEVICE_NAME"
 fi
 
 

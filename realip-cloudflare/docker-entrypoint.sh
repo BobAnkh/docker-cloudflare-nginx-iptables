@@ -11,4 +11,5 @@
 
 set -e
 
-crond && tail -f /dev/null
+/usr/local/bin/check-ip.sh
+crond && tail -f /tmp/cron.log

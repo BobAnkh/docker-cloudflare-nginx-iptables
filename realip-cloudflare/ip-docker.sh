@@ -9,6 +9,8 @@
  # Copyright 2021 BobAnkh
 ### 
 
+set -e
+
 echo "# Cloudflare ip addresses"
 echo ""
 echo "# - IPv4"
@@ -22,3 +24,5 @@ for i in $(curl https://www.cloudflare.com/ips-v6); do
 done
 echo ""
 echo "real_ip_header X-Forwarded-For;"
+echo ""
+echo "real_ip_recursive on;"
