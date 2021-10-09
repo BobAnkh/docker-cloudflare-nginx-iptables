@@ -5,6 +5,9 @@ services:
     build: ./iptables-cloudflare
     image: iptales-cloudflare:latest
     container_name: ${IPTABLES_SEVICE_NAME:-iptables-cloudflare}
+    depends_on:
+      - docker-gen-auto
+      - proxy-web-auto
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -60,6 +63,10 @@ services:
       args:
         REALIP_IMAGE_VERSION: ${REALIP_IMAGE_VERSION:-latest}
     image: realip-cloudflare:latest
+    container_name: ${REALIP_SEVICE_NAME:-realip-cloudflare}
+    depends_on:
+      - docker-gen-auto
+      - proxy-web-auto
     restart: unless-stopped
     volumes:
       - ${NGINX_FILES_PATH:-./data}/conf.d:/etc/nginx/conf.d

@@ -2,6 +2,8 @@ ARG REALIP_IMAGE_VERSION
 FROM alpinelinux/docker-cli:$REALIP_IMAGE_VERSION
 ENV DOCKER_HOST unix:///tmp/docker.sock
 
+RUN apk add --update curl && rm -rf /var/cache/apk/*
+
 WORKDIR /
 COPY docker-entrypoint.sh        /
 COPY check-ip.sh /usr/local/bin/
