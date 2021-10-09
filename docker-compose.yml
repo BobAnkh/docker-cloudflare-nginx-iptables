@@ -3,7 +3,7 @@ version: '3'
 services:
   iptables-cloudflare:
     build: ./iptables-cloudflare
-    image: iptales-cloudflare:latest
+    image: iptables-cloudflare:latest
     container_name: ${IPTABLES_SEVICE_NAME:-iptables-cloudflare}
     depends_on:
       - docker-gen-auto
