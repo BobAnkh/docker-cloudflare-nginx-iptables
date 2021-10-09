@@ -4,18 +4,20 @@
  # @Github       : https://github.com/BobAnkh
  # @Date         : 2021-10-08 16:43:42
  # @LastEditors  : BobAnkh
- # @LastEditTime : 2021-10-09 15:42:00
+ # @LastEditTime : 2021-10-09 15:52:59
  # @Description  : 
  # Copyright 2021 BobAnkh
 ### 
 
 # ipv4
-/usr/local/bin/iptables-docker.sh > /tmp/iptables-new.log
+
 
 file1=/tmp/iptables.log
 file2=/tmp/iptables-new.log
 
 echo "[IPTABLES] Init..." >> /tmp/cron.log
+echo "[IPTABLES] Init ipv4..." >> /tmp/cron.log
+/usr/local/bin/iptables-docker.sh > /tmp/iptables-new.log
 
 if [ -f $file1 ] && [ -f $file2 ]
 then
@@ -35,10 +37,12 @@ else
 fi
 
 # ipv6
-/usr/local/bin/iptables-dockerv6.sh > /tmp/ip6tables-new.log
 
 file3=/tmp/ip6tables.log
 file4=/tmp/ip6tables-new.log
+
+echo "[IPTABLES] Init ipv6..." >> /tmp/cron.log
+/usr/local/bin/iptables-dockerv6.sh > /tmp/ip6tables-new.log
 
 if [ -f $file3 ] && [ -f $file4 ]
 then

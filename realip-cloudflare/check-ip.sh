@@ -4,7 +4,7 @@
  # @Github       : https://github.com/BobAnkh
  # @Date         : 2021-10-08 18:14:19
  # @LastEditors  : BobAnkh
- # @LastEditTime : 2021-10-09 15:42:44
+ # @LastEditTime : 2021-10-09 15:54:03
  # @Description  : 
  # Copyright 2021 BobAnkh
 ### 
@@ -20,10 +20,12 @@ nginx_config_file=/etc/nginx/conf.d/real_ip_cloudflare.conf
 echo "[REAL-IP] Init..." >> /tmp/cron.log
 
 while [ ! -f "$nginx_config_file" ]; do
-    sleep 10
+    sleep 5
     echo "[REAL-IP] Check init..." >> /tmp/cron.log
     /usr/local/bin/ip-docker.sh > "$nginx_config_file"
+    docker kill -s HUP "$NGINX_WEB_SEVICE_NAME"
     echo "[REAL-IP] Loop..." >> /tmp/cron.log
+    sleep 5
 done
 
 if [ -f "$file1" ] && [ -f "$file2" ]
